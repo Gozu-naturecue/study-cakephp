@@ -37,7 +37,7 @@ yum -y install --enablerepo=nginx nginx-1.12.0
 ###########
 yum -y install epel-release
 rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
-yum -y install --enablerepo=remi-php71 php-7.1.14 php-mbstring php-pear php-fpm php-mcrypt php-mysql php-mbstring php-intl php-simplexml
+yum -y install --enablerepo=remi-php71 php-7.1.14 php-mbstring php-pear php-fpm php-mcrypt php-mysql php-intl php-simplexml
 
 ###########
 ## MySQL ##
@@ -77,34 +77,25 @@ mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.org
 
 cat << NGINX > /etc/nginx/conf.d/default.conf
 server {
-    listen   80;
-    listen   [::]:80;
-    server_name localhost;
-    return 301 http://localhost\$request_uri;
-}
-
-server {
-    listen   80;
-    listen   [::]:80;
+    listen      80;
+    listen      [::]:80;
     server_name localhost;
 
     root   /usr/share/nginx/html/public/webroot;
     index  index.php;
 
     access_log /var/log/nginx/access.log;
-    error_log /var/log/nginx/error.log;
+    error_log  /var/log/nginx/error.log;
 
     location / {
         try_files \$uri \$uri/ /index.php?\$args;
     }
 
     location ~ \.php\$ {
-        try_files \$uri =404;
-        include fastcgi_params;
-        fastcgi_pass 127.0.0.1:9000;
-        fastcgi_index index.php;
-        fastcgi_intercept_errors on;
-        fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
+        fastcgi_pass   unix:/var/run/php-fpm/php-fpm.sock;
+        fastcgi_index  index.php;
+        fastcgi_param  SCRIPT_FILENAME  \$document_root\$fastcgi_script_name;
+        include        fastcgi_params;
     }
 }
 NGINX
