@@ -11,9 +11,15 @@ Vagrant.configure("2") do |config|
     :group  => 'vagrant', \
     :mount_options => ['dmode=755,fmode=755']
 
-  config.vm.synced_folder "../../storage", "/usr/share/nginx/html/storage", \
+  config.vm.synced_folder "../../tmp", "/usr/share/nginx/html/tmp", \
     :create => true, \
-    :owner  => 'vagrant', \
-    :group  => 'vagrant', \
+    :owner  => 'nginx', \
+    :group  => 'nginx', \
+    :mount_options => ['dmode=777,fmode=777']
+
+  config.vm.synced_folder "../../logs", "/usr/share/nginx/html/logs", \
+    :create => true, \
+    :owner  => 'nginx', \
+    :group  => 'nginx', \
     :mount_options => ['dmode=777,fmode=777']
 end
