@@ -37,7 +37,7 @@ yum -y install --enablerepo=nginx nginx-1.12.0
 ###########
 yum -y install epel-release
 rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
-yum -y install --enablerepo=remi-php71 php-7.1.14 php-mbstring php-pear php-fpm php-mcrypt php-mysql php-intl php-simplexml
+yum -y install --enablerepo=remi-php71 php-7.1.15 php-mbstring php-pear php-fpm php-mcrypt php-mysql php-intl php-simplexml
 
 ###########
 ## MySQL ##
@@ -132,19 +132,19 @@ systemctl start mysqld.service
 #############################
 ## MySQLのrootパスワード変更 ##
 #############################
-# # 初期パスワードの取得
-# log_file=/var/log/mysqld.log
-# export tmp_pass=$(grep 'password is generated' $log_file | awk -F'root@localhost: ' '{print $2}')
+# 初期パスワードの取得
+log_file=/var/log/mysqld.log
+export tmp_pass=$(grep 'password is generated' $log_file | awk -F'root@localhost: ' '{print $2}')
 
-# # 設定したいパスワード
-# new_pass=
+# 設定したいパスワード
+new_pass=i\&R6VMt7
 
-# mysqladmin --password=$tmp_pass password $new_pass
+mysqladmin --password=$tmp_pass password $new_pass
 
-# # ユーザー追加&データベース追加
-# project_db=
-# project_user=
-# project_user_pass=
-# echo "CREATE DATABASE $project_db;" | mysql -u root --password=$new_pass
-# echo "CREATE USER '$project_user'@'localhost' IDENTIFIED BY '$project_user_pass';" | mysql -u root --password=$new_pass
-# echo "GRANT ALL PRIVILEGES ON $project_db.* TO '$project_user'@'localhost';" | mysql -u root --password=$new_pass
+# ユーザー追加&データベース追加
+project_db=study_cakephp
+project_user=study_cakephp
+project_user_pass=v2\#U\~na7
+echo "CREATE DATABASE $project_db;" | mysql -u root --password=$new_pass
+echo "CREATE USER '$project_user'@'localhost' IDENTIFIED BY '$project_user_pass';" | mysql -u root --password=$new_pass
+echo "GRANT ALL PRIVILEGES ON $project_db.* TO '$project_user'@'localhost';" | mysql -u root --password=$new_pass
