@@ -18,4 +18,10 @@ class PostsController extends AppController
         $posts = $this->Posts->find('all');
         $this->set(compact('posts'));
     }
+
+    public function show($id)
+    {
+        $post = $this->Posts->get($id);
+        $this->set(compact('post'));
+    }
 }
