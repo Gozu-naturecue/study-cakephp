@@ -24,4 +24,10 @@ class PostsController extends AppController
         $post = $this->Posts->get($id);
         $this->set(compact('post'));
     }
+
+    public function edit($id)
+    {
+        $post = $this->Posts->get($id);
+        $this->set(compact('post'));
+    }
 }
