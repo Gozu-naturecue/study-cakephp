@@ -9,6 +9,8 @@
 !/tmp/cache/persistent/empty
 /tmp/cache/views/*
 !/tmp/cache/views/empty
+/tmp/cache/twigView/*
+!/tmp/cache/twigView/empty
 /tmp/sessions/*
 !/tmp/sessions/empty
 /tmp/tests/*
