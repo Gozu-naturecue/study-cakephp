@@ -1,8 +1,5 @@
 <h1>記事の編集</h1>
-<p>
-    <?= nl2br(h($post->body)) ?>
-</p>
-<?= $this->Form->create($post) ?>
+<?= $this->Form->create($post, ['url' => ['action' => 'update']]) ?>
 <?= $this->Form->control('title') ?>
 <?= $this->Form->control('body') ?>
 <?= $this->Form->button('更新') ?>
