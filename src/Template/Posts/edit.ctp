@@ -1,5 +1,5 @@
 <h1>記事の編集</h1>
-<?= $this->Form->create($post, ['url' => ['action' => 'update']]) ?>
+<?= $this->Form->create($post) ?>
 <?= $this->Form->control('title') ?>
 <?= $this->Form->control('body') ?>
 <?= $this->Form->button('更新') ?>

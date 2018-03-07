@@ -28,6 +28,16 @@ class PostsController extends AppController
     public function edit($id)
     {
         $post = $this->Posts->get($id);
+
+        if ($this->request->is(['put', 'patch'])) {
+            $post = $this->Posts->patchEntity($post, $this->request->data);
+            if ($this->Posts->save($post)) {
+                $this->set(compact('post'));
+            } else {
+                $this->Flash->error('Edit Error!');
+            }
+        }
+
         $this->set(compact('post'));
     }
 }

@@ -65,6 +65,10 @@ Router::scope('/', function (RouteBuilder $routes) {
         ->setPatterns(['id' => '\d+'])
         ->setPass(['id']);
 
+    $routes->resources('Articles', [
+        'only' => ['index', 'update']
+    ]);
+
     /**
      * Connect catchall routes for all controllers.
      *
