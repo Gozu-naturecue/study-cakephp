@@ -40,4 +40,14 @@ class PostsController extends AppController
 
         $this->set(compact('post'));
     }
+
+    public function delete($id)
+    {
+        $post = $this->Posts->get($id);
+        $this->Posts->delete($post);
+
+        return $this->redirect(
+            ['action' => 'index']
+        );
+    }
 }

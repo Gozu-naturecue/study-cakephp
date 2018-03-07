@@ -6,6 +6,14 @@
 <?= $this->Form->end() ?>
 
 <ul>
-    <li><a href="">削除</a></li>
+    <li>
+        <?=
+            $this->Form->postLink(
+                '削除',
+                ['action' => 'delete', $post->id],
+                ['confirm' =>'削除してよろしいですか？']
+            );
+        ?>
+    </li>
     <li><?= $this->Html->link('戻る', ['action' => 'show', $post->id]) ?></li>
 </ul>
