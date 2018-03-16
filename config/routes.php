@@ -56,6 +56,19 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
 
+
+    $routes
+        ->connect(
+            '/posts/:id',
+            ['controller' => 'Posts', 'action' => 'show']
+        )
+        ->setPatterns(['id' => '\d+'])
+        ->setPass(['id']);
+
+    $routes->resources('Articles', [
+        'only' => ['index', 'update']
+    ]);
+
     /**
      * Connect catchall routes for all controllers.
      *
